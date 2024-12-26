@@ -85,10 +85,13 @@ async def masg_analisys(message: types.Message):
             for entity in message.entities:
                 print("entity:", entity)
                 if entity.type == "mention":  # Проверяем, упомянут ли пользователь
+                    print(message.text[entity.offset:entity.offset + entity.length])
                     mentioned_username = message.text[entity.offset:entity.offset + entity.length]
+                    print(mentioned_username)
                     try:
                         # Получаем ID упомянутого пользователя
                         chat_member = await bot.get_chat_member(message.chat.id, mentioned_username[1:])
+                        print("chat_member", chat_member)
                         permanent_insulted_preson = chat_member.user.id
                         permanent_insulted_preson_inchat = group_id
                         await message.reply(f"Да, детка {mentioned_username} ({permanent_insulted_preson}) сегодня твой день!")
