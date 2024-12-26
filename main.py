@@ -80,21 +80,15 @@ async def masg_analisys(message: types.Message):
 
     # Проверяем, начинается ли сообщение с нужной фразы
     if message.text.startswith("Сегодня опущен"):
-        print("message.entities", message.entities)
         if message.entities:
             for entity in message.entities:
                 print("entity:", entity)
                 if entity.type == "mention":  # Проверяем, упомянут ли пользователь
-                    print(message.text[entity.offset:entity.offset + entity.length])
                     mentioned_username = message.text[entity.offset:entity.offset + entity.length]
-                    print(mentioned_username)
                     try:
-                        # Получаем ID упомянутого пользователя
-                        chat_member = await bot.get_chat_member(message.chat.id, mentioned_username[1:])
-                        print("chat_member", chat_member)
-                        permanent_insulted_preson = chat_member.user.id
+                        permanent_insulted_preson = mentioned_username
                         permanent_insulted_preson_inchat = group_id
-                        await message.reply(f"Да, детка {mentioned_username} ({permanent_insulted_preson}) сегодня твой день!")
+                        await message.reply(f"Да, детка {permanent_insulted_preson} сегодня твой день!")
                         return
                     except:
                         pass
@@ -103,7 +97,7 @@ async def masg_analisys(message: types.Message):
         permanent_insulted_preson = 0
         permanent_insulted_preson_inchat = 0
 
-    if message.from_user.id == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
+    if message.from_user.username == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
         cur_insult = choose_an_insult(last_insults)
         await bot.send_message(group_id, f"Ты {cur_insult}!",  reply_to_message_id=message_id)
 
