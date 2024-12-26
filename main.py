@@ -93,9 +93,12 @@ async def masg_analisys(message: types.Message):
                         pass
 
     if message.text.startswith("Закончи опущения"):
-        await message.reply(f"Штош, живи {permanent_insulted_preson}... Но это не на долго!")
-        permanent_insulted_preson = 0
-        permanent_insulted_preson_inchat = 0
+        if message.from_user.username.lower() == "kastorsky1":
+            await message.reply(f"Штош, живи {permanent_insulted_preson}... Но это не на долго!")
+            permanent_insulted_preson = 0
+            permanent_insulted_preson_inchat = 0
+        else:
+            await message.reply(f"Ха-ха! У тебя нет на это права!")
 
     if message.from_user.username.lower() == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
         cur_insult = choose_an_insult(last_insults)
