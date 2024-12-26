@@ -94,7 +94,8 @@ async def masg_analisys(message: types.Message):
 
     if message.text.startswith("Закончи опущения"):
         if message.from_user.username.lower() == "kastorsky1":
-            await message.reply(f"Штош, живи {permanent_insulted_preson}... Но это не на долго!")
+            await message.reply(f"Штош, живи... Но это не на долго!")
+            # await message.reply(f"Штош, живи {permanent_insulted_preson}... Но это не на долго!")
             permanent_insulted_preson = 0
             permanent_insulted_preson_inchat = 0
         else:
