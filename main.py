@@ -87,7 +87,7 @@ async def masg_analisys(message: types.Message):
                     try:
                         permanent_insulted_preson = mentioned_username[1:]
                         permanent_insulted_preson_inchat = group_id
-                        await message.reply(f"Да, детка {permanent_insulted_preson} сегодня твой день!")
+                        await message.reply(f"Да, детка {mentioned_username} сегодня твой день!")
                         return
                     except:
                         pass
@@ -96,6 +96,7 @@ async def masg_analisys(message: types.Message):
         permanent_insulted_preson = 0
         permanent_insulted_preson_inchat = 0
 
+    print(message.from_user.username, permanent_insulted_preson, group_id, permanent_insulted_preson_inchat)
     if message.from_user.username == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
         cur_insult = choose_an_insult(last_insults)
         await bot.send_message(group_id, f"Ты {cur_insult}!",  reply_to_message_id=message_id)
