@@ -93,7 +93,7 @@ async def masg_analisys(message: types.Message):
                         pass
 
     if message.text.startswith("Закончи опущения"):
-        await message.reply(f"Штош, живи {mentioned_username}... Но это не на долго!")
+        await message.reply(f"Штош, живи {permanent_insulted_preson}... Но это не на долго!")
         permanent_insulted_preson = 0
         permanent_insulted_preson_inchat = 0
 
