@@ -80,8 +80,10 @@ async def masg_analisys(message: types.Message):
 
     # Проверяем, начинается ли сообщение с нужной фразы
     if message.text.startswith("Сегодня опущен"):
+        print("message.entities", message.entities)
         if message.entities:
             for entity in message.entities:
+                print("entity:", entity)
                 if entity.type == "mention":  # Проверяем, упомянут ли пользователь
                     mentioned_username = message.text[entity.offset:entity.offset + entity.length]
                     try:
