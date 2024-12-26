@@ -70,6 +70,7 @@ async def on_startup(_):
 
 @dp.message_handler()
 async def masg_analisys(message: types.Message):
+    global permanent_insulted_preson, permanent_insulted_preson_inchat 
     print(message.chat.id, message.text)
     message_id = message.message_id
     group_id = message.chat.id
