@@ -21,7 +21,7 @@ my_group_id = 397033764 #-4044391196 # моя
 # group_id = "-1001974589265" # киты 
 # group_id = "" #лрз
 
-value = 0
+permanent_insulted_preson = 0
 permanent_insulted_preson_inchat = 0
 
 last_insults = []
@@ -88,7 +88,7 @@ async def masg_analisys(message: types.Message):
                         chat_member = await bot.get_chat_member(message.chat.id, mentioned_username[1:])
                         permanent_insulted_preson = chat_member.user.id
                         permanent_insulted_preson_inchat = group_id
-                        await message.reply(f"ID пользователя {mentioned_username} ({value}) записан в переменную.")
+                        await message.reply(f"Да, детка {mentioned_username} ({permanent_insulted_preson}) сегодня твой день!")
                         return
                     except:
                         pass
