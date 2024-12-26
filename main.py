@@ -21,6 +21,9 @@ my_group_id = 397033764 #-4044391196 # моя
 # group_id = "-1001974589265" # киты 
 # group_id = "" #лрз
 
+value = 0
+permanent_insulted_preson_inchat = 0
+
 last_insults = []
 
 with open("list_of_insults.csv", mode='r', encoding='utf-8') as file:
@@ -68,12 +71,36 @@ async def on_startup(_):
 @dp.message_handler()
 async def masg_analisys(message: types.Message):
     print(message.chat.id, message.text)
-    
     message_id = message.message_id
     group_id = message.chat.id
     message_text = message.text.lower()
     check_group(group_id)
     # await bot.send_message(message.from_user.id, message.chat.id) # id of chat
+
+    # Проверяем, начинается ли сообщение с нужной фразы
+    if message.text.startswith("Сегодня опущен"):
+        if message.entities:
+            for entity in message.entities:
+                if entity.type == "mention":  # Проверяем, упомянут ли пользователь
+                    mentioned_username = message.text[entity.offset:entity.offset + entity.length]
+                    try:
+                        # Получаем ID упомянутого пользователя
+                        chat_member = await bot.get_chat_member(message.chat.id, mentioned_username[1:])
+                        permanent_insulted_preson = chat_member.user.id
+                        permanent_insulted_preson_inchat = group_id
+                        await message.reply(f"ID пользователя {mentioned_username} ({value}) записан в переменную.")
+                        return
+                    except:
+                        pass
+
+    if message.text.startswith("Закончи опущения"):
+        permanent_insulted_preson = 0
+        permanent_insulted_preson_inchat = 0
+
+    if message.from_user.id == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
+        cur_insult = choose_an_insult(last_insults)
+        await bot.send_message(group_id, f"Ты {cur_insult}!",  reply_to_message_id=message_id)
+
     if "оскорби его" in message_text:
         cur_insult = choose_an_insult(last_insults)
         await bot.send_message(group_id, f"Ну ты {cur_insult}", reply_to_message_id = message_id-1)
