@@ -177,11 +177,9 @@ async def masg_analisys(message: types.Message):
         await bot.send_message(group_id, f"{message_text[6:]}!")
 
     if message.text.startswith("Раздай кликухи:"):
-        print("razday")
         persons = message_text[16:].split(",")
-        print(persons)
         for person in persons:
-            print(group_id, person, cur_insult)
+            cur_insult = choose_an_insult(last_insults)
             await bot.send_message(group_id, f"{person} - {cur_insult}")
         
     
