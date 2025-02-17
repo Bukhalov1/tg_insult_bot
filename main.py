@@ -176,7 +176,7 @@ async def masg_analisys(message: types.Message):
         group_id = "-1001974589265" #киты
         await bot.send_message(group_id, f"{message_text[6:]}!")
 
-    if "Раздай кликухи:" in message_text[0:15]:
+    if "Раздай кликухи:" in message_text[0:16]:
         print("razday")
         persons = message_text[16:].split(",")
         print(persons)
