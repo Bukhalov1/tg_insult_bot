@@ -75,6 +75,7 @@ async def masg_analisys(message: types.Message):
     message_id = message.message_id
     group_id = message.chat.id
     message_text = message.text.lower()
+    message_from_user_username = message.from_user.username
     check_group(group_id)
     # await bot.send_message(message.from_user.id, message.chat.id) # id of chat
 
@@ -93,7 +94,7 @@ async def masg_analisys(message: types.Message):
                         pass
 
     if message.text.startswith("Закончи опущения"):
-        if message.from_user.username.lower() == "kastorsky1":
+        if message_from_user_username.lower() == "kastorsky1":
             await message.reply(f"Штош, живи... Но это не на долго!")
             # await message.reply(f"Штош, живи {permanent_insulted_preson}... Но это не на долго!")
             permanent_insulted_preson = 0
@@ -101,7 +102,7 @@ async def masg_analisys(message: types.Message):
         else:
             await message.reply(f"Ха-ха! У тебя нет на это права!")
 
-    if message.from_user.username.lower() == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
+    if message_from_user_username.lower() == permanent_insulted_preson and group_id == permanent_insulted_preson_inchat:
         cur_insult = choose_an_insult(last_insults)
         await bot.send_message(group_id, f"Ты {cur_insult}!",  reply_to_message_id=message_id)
 
