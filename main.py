@@ -180,7 +180,7 @@ async def masg_analisys(message: types.Message):
         persons = message_text[16:].split(",")
         for person in persons:
             cur_insult = choose_an_insult(last_insults)
-            await bot.send_message(group_id, f"{person} - {cur_insult}")
+            await bot.send_message(group_id, f"{person.capitalize} - {cur_insult}")
         
     
 if __name__ == "__main__":
