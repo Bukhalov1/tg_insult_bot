@@ -64,6 +64,9 @@ def choose_an_insult(last_insults):
     last_insults.append(choosen_insult)
     return choosen_insult
 
+def random_bool(probability_of_1=0.5):
+    return 1 if random.random() < probability_of_1 else 0
+
 
 async def on_startup(_):
     print("TG bot is online")
@@ -162,14 +165,20 @@ async def masg_analisys(message: types.Message):
         await bot.send_message(group_id, f"Аргумент не нужен, пидор обнаружен!",  reply_to_message_id=message_id)
         
     if "да" in message_text[-3:]:
-        yes_list = ["Перда", "Пизда", "Манда", "Елда"]
-        r = random.randint(0, len(yes_list)-1)
-        await bot.send_message(group_id, f"{yes_list[r]}!",  reply_to_message_id=message_id)
+        if(random_bool(0.1)): 
+            yes_list = ["Перда", "Пизда", "Манда", "Елда"]
+            r = random.randint(0, len(yes_list)-1)
+            await bot.send_message(group_id, f"{yes_list[r]}!",  reply_to_message_id=message_id)
+        else:
+            pass
 
     if "нет" in message_text[-4:]:
-        no_list = ["Пидора ответ", "Сотвори себе минет", "Шлюхи аргумент", "Хер тебе в пакет", "Дрочишь много лет", "Отнеси свой хер в чермет", "Тебя дерёт брюнет", "Получай в дуплет", "Говноед"]
-        r = random.randint(0, len(no_list)-1)
-        await bot.send_message(group_id, f"{no_list[r]}!",  reply_to_message_id=message_id)
+        if(random_bool(0.1)): 
+            no_list = ["Пидора ответ", "Сотвори себе минет", "Шлюхи аргумент", "Хер тебе в пакет", "Дрочишь много лет", "Отнеси свой хер в чермет", "Тебя дерёт брюнет", "Получай в дуплет", "Говноед"]
+            r = random.randint(0, len(no_list)-1)
+            await bot.send_message(group_id, f"{no_list[r]}!",  reply_to_message_id=message_id)
+        else:
+            pass
 
     if "анонс:" in message_text:
         message_text = message.text
