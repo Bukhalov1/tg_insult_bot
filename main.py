@@ -65,8 +65,10 @@ def choose_an_insult(last_insults):
     last_insults.append(choosen_insult)
     return choosen_insult
 
-def random_bool(probability_of_1=0.5):
-    return 1 if secrets.SystemRandom().random() < probability_of_1 else 0
+def random_bool(probability_of_1=0.05):
+    r = secrets.SystemRandom().random()
+    print(r)
+    return 1 if r < probability_of_1 else 0
 
 
 async def on_startup(_):
