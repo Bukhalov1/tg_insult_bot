@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import time
 import random
+import secrets
 import csv
 from aiogram import Bot, types, dispatcher, executor
 import config
@@ -65,7 +66,7 @@ def choose_an_insult(last_insults):
     return choosen_insult
 
 def random_bool(probability_of_1=0.5):
-    return 1 if random.random() < probability_of_1 else 0
+    return 1 if secrets.SystemRandom().random() < probability_of_1 else 0
 
 
 async def on_startup(_):
