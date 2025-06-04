@@ -165,7 +165,7 @@ async def masg_analisys(message: types.Message):
         await bot.send_message(group_id, f"Аргумент не нужен, пидор обнаружен!",  reply_to_message_id=message_id)
         
     if "да" in message_text[-3:]:
-        if(random_bool(0.1)): 
+        if(random_bool(0.9)): 
             yes_list = ["Перда", "Пизда", "Манда", "Елда"]
             r = random.randint(0, len(yes_list)-1)
             await bot.send_message(group_id, f"{yes_list[r]}!",  reply_to_message_id=message_id)
@@ -173,7 +173,7 @@ async def masg_analisys(message: types.Message):
             pass
 
     if "нет" in message_text[-4:]:
-        if(random_bool(0.1)): 
+        if(random_bool(0.9)): 
             no_list = ["Пидора ответ", "Сотвори себе минет", "Шлюхи аргумент", "Хер тебе в пакет", "Дрочишь много лет", "Отнеси свой хер в чермет", "Тебя дерёт брюнет", "Получай в дуплет", "Говноед"]
             r = random.randint(0, len(no_list)-1)
             await bot.send_message(group_id, f"{no_list[r]}!",  reply_to_message_id=message_id)
