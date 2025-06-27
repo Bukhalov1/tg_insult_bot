@@ -1,13 +1,15 @@
-#! /usr/bin/python
+#!/usr/bin/python
 import time
 import random
 import secrets
 import csv
 from aiogram import Bot, types, dispatcher, executor
-import config
-# from list_of_insults import list_of_insults
+from dotenv import load_dotenv
+import os
 
-bot = Bot(token=config.TOKEN)
+load_dotenv()
+TOKEN = os.getenv("TOKEN")
+bot = Bot(token=TOKEN)
 dp = dispatcher.Dispatcher(bot)
 
 # Путь к CSV файлу
